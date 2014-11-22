@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20141122000156) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "events", force: true do |t|
     t.integer "user_id"
     t.integer "song_id"
@@ -20,7 +23,7 @@ ActiveRecord::Schema.define(version: 20141122000156) do
   end
 
   create_table "songs", force: true do |t|
-    t.string   "song_id"
+    t.string   "soundcloud_id"
     t.string   "genre"
     t.string   "song_url"
     t.datetime "created_at"
