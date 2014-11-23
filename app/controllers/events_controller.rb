@@ -1,4 +1,4 @@
-class Api::Users::EventsController < ApplicationController
+class API::Users::EventsController < ApplicationController
 
   def create
     # find user
