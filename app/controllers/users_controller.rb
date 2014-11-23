@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Api::UsersController < ApplicationController
 
     def index
         set_cors_headers
@@ -15,17 +15,20 @@ class UsersController < ApplicationController
     set_cors_headers
     content_type :json
 
+    @user = User.find(params[:user][:id])
+
     begin
-      if @user = User.find(params[:user][:id])
-        return {user_id: @user.id}.to_json
+      if !@user.nil?
+        render json: @user
       end
     rescue
-      @user = nil
+      render json: none
     end
 
-    @user = User.new(params)
+    @user = User.new(user_params)
     if @user.save
-      return {user_id: @user.id}.to_json
+      # return {user_id: @user.id}.to_json
+      render json: @user
     end
   end
 
@@ -33,7 +36,8 @@ class UsersController < ApplicationController
     content_type :json
 
     @user = User.find_by soundcloud_id: params[:soundcloud_id]
-    @user.to_json
+    # @user.to_json
+    render json: @user
   end
 
   private

@@ -1,14 +1,14 @@
-class SongsController < ApplicationController
+class Api::SongsController < ApplicationController
 
   def show
     content_type :json
 
-    @song = Song.find_by song_id: params[:song_id]
-    @user.to_json
+    @song = Song.find_by song_id: params[:id]
+    @song.to_json
   end
 
   private
-  def user_params
-    params.require(:user).permit(:song_id, :genre, :song_url)
+  def song_params
+    params.require(:song).permit(:id, :genre, :song_url)
   end
 end
