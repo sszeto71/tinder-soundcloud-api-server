@@ -1,4 +1,6 @@
 # module Api
+  require 'json'
+
   class UsersController < ApplicationController
 
       def index
@@ -14,7 +16,7 @@
 
     def create
       set_cors_headers
-      content_type :json
+      content_type "json"
 
       @user = User.find(params[:user][:id])
 
@@ -34,7 +36,7 @@
     end
 
     def show
-      content_type :json
+      content_type "json"
 
       @user = User.find_by soundcloud_id: params[:soundcloud_id]
       # @user.to_json
