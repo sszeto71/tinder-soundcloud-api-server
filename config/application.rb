@@ -20,12 +20,19 @@ module TinderSoundcloudApiServer
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     # config.middlewar
-    config.action_dispatch.default_headers = {
-          'Access-Control-Allow-Origin' => '*',
-          'Access-Control-Allow-Methods' => 'POST, PUT, DELETE, GET, OPTIONS',
-          'Access-Control-Request-Method' => '*',
-          'Access-Control-Allow-Headers' => 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-    }
+    # config.action_dispatch.default_headers = {
+    #       'Access-Control-Allow-Origin' => '*',
+    #       'Access-Control-Allow-Methods' => 'POST, PUT, DELETE, GET, OPTIONS',
+    #       'Access-Control-Request-Method' => '*',
+    #       'Access-Control-Allow-Headers' => 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+    # }
+    config.middleware.insert_before 0, "Rack::Cors" do
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get, :post, :options]
+      end
+    end
+
 
   end
 end
