@@ -17,6 +17,8 @@ class API::Users::EventsController < ApplicationController
     # save event
     @event = @user.event.build(:user_id => @user.id, :song_id => @song.id, :like => params[:like])
     if @event.save
+      redirect_to app_user_path
+    end
 
   end
 

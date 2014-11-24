@@ -1,4 +1,4 @@
-module Api
+# module Api
   class SongsController < ApplicationController
 
     def show
@@ -13,4 +13,4 @@ module Api
       params.require(:song).permit(:id, :genre, :song_url)
     end
   end
-end
+# end
