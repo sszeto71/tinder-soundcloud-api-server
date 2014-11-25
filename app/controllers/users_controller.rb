@@ -18,23 +18,25 @@
       end
 
     def create
-      set_cors_headers
-      # respond_to :json
+      # set_cors_headers
+      respond_to do |format|
+        format.json do
+          @user = User.find(params[:user][:id])
 
-      @user = User.find(params[:user][:id])
+          begin
+            if !@user.nil?
+              render json: @user
+            end
+          rescue
+            render json: none
+          end
 
-      begin
-        if !@user.nil?
-          render json: @user
+          @user = User.new(user_params)
+          if @user.save
+            # return {user_id: @user.id}.to_json
+            render json: @user
+          end
         end
-      rescue
-        render json: none
-      end
-
-      @user = User.new(user_params)
-      if @user.save
-        # return {user_id: @user.id}.to_json
-        render json: @user
       end
     end
 
