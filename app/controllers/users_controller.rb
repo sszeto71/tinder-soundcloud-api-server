@@ -41,7 +41,7 @@
     def show
       # respond_to :json
 
-      @user = User.find_by soundcloud_id: params[:soundcloud_id]
+      @user = User.find_by soundcloud_id: params[:id]
       # @user.to_json
       render json: @user
     end
