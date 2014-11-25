@@ -34,7 +34,7 @@
           @user = User.new(user_params)
           if @user.save
             # return {user_id: @user.id}.to_json
-            render json: @user
+            return @user.to_json
           end
         end
       end
