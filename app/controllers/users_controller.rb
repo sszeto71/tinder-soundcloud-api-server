@@ -3,6 +3,9 @@
 
   class UsersController < ApplicationController
 
+      include ActionController::MimeResponds
+      include ActionController::ImplicitRender
+
       def index
           set_cors_headers
       end

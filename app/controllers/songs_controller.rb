@@ -1,6 +1,9 @@
 # module Api
   class SongsController < ApplicationController
 
+   include ActionController::MimeResponds
+   include ActionController::ImplicitRender
+
     def show
       content_type :json
 

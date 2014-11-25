@@ -1,4 +1,7 @@
-class API::Users::EventsController < ApplicationController
+class EventsController < ApplicationController
+
+  include ActionController::MimeResponds
+  include ActionController::ImplicitRender
 
   def create
     # find user
